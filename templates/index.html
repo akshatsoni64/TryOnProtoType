@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block blk %}
+    <h1>TryOn {{ title }}</h1>
+    <form method="POST" name="form" id="{{ form_id }}" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

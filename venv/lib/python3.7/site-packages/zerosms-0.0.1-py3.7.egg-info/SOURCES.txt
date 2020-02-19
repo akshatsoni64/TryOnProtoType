@@ -1,0 +1,12 @@
+COPYRIGHT.txt
+LICENSE_GPLv3.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+zerosms/__init__.py
+zerosms.egg-info/PKG-INFO
+zerosms.egg-info/SOURCES.txt
+zerosms.egg-info/dependency_links.txt
+zerosms.egg-info/requires.txt
+zerosms.egg-info/top_level.txt

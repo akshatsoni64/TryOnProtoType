@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block blk %}
+    {% if request.session != "" %}
+        <h1>{{ title }}</h1>
+
+    {% endif %}
+{% endblock %}
