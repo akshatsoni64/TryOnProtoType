@@ -65,7 +65,7 @@ class VendorForm(forms.ModelForm):
         attrs={
             'id': "cnameVendor",
             'maxlength': '30',
-            'placeholder': 'Name Here...'
+            'placeholder': 'Company Name'
         }
     ))
     owner_fname = forms.CharField(label="First Name", widget=forms.TextInput(
