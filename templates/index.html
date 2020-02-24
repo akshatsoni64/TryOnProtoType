@@ -56,11 +56,11 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="home-02.html">Home</a>
+								<a href="{% url 'index' %}">Home</a>
 								<!--<ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>-->
 									<!--<li><a href="home-02.html">Homepage</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>-->
+									<!--<li><a href="home-03.html">Homepage 3</a></li>-->
 								<!--</ul> -->
 							<!--</li>-->
 
@@ -69,14 +69,24 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="{%url 'features'%}">Features</a>
+								<a href="{%url 'features' %}">Features</a>
 							</li>
-
-							
-
+							{% if user.is_authenticated %}
+							  <li><font color="blue";>hello,{{user.first_name}}</font></li>
+							  
+                            				 {% else %}
+									
+                           				 <li>
+								<a href="{% url 'login' %}">login</a>
+							</li>
 							<li>
-								<a href="{% url 'contact' %}">Contact</a>
+								<a href="{% url 'register' %}">Sign</a>
 							</li>
+							
+                            {% endif %}
+							<li>
+                                <a href="{% url 'contact' %}">Contact</a>
+                            </li>
 						</ul>
 					</div>	
 
