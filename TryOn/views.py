@@ -1,9 +1,38 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-
-from TryOn import models
 from TryOn import form as forms
+from TryOn.models import *
+from TryOn import models
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def index(request):  
+    data=request.GET.get('name')
+    print(data)
+    result=[]
+    #alldata=Product.objects.all()
+    imagedata=ProductImages.objects.all()
+    if request.method == "POST":
+        if request.POST.get('name'):
+            prid=request.POST.get('name')
+            print("-----",prid)
+            pdetails=ProductImages.objects.get(id=prid)
+            return render(request,'product-details.html',{'pdetails':pdetails})
+        
+    return render(request,'index.html',{'data':imagedata})
+   
+def shop(request):
+    return render(request,'shoping-cart.html')
+
+def features(request):
+    return render(request,'product.html')
+
+def contact(request):
+    return render(request,'contact.html')
+
+def product_details(request):
+    return render(request,'product-detail.html')
 
 
 class LoginView(View):
