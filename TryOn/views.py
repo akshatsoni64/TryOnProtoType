@@ -179,8 +179,7 @@ class ProductDisplayView(View):
 
     def delete(self, request):
         pass
-    
- def register(request):
+def register(request):
 
     if request.method == 'POST':
         first_name = request.POST['first_name']
