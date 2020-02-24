@@ -1,4 +1,5 @@
 {% load static %}
+{% static "images" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,25 +30,20 @@
                     <ul class="main-menu">
                         <li class="active-menu">
                             <a href="{% url 'index' %}">Home</a>
-                            <!--<ul class="sub-menu">
-                                <li><a href="index.html">Homepage 1</a></li>-->
-                                <!--<li><a href="home-02.html">Homepage</a></li>
-                                <!--<li><a href="home-03.html">Homepage 3</a></li>-->
-                            <!--</ul> -->
-                        <!--</li>-->
+                           
 
                         <li>
                             <a href="{% url 'shop' %}">Shop</a>
                         </li>
 
                         <li class="label1" data-label1="hot">
-                            <a href="{%url 'features'%}">Features</a>
+                            <a href="{% url 'features' %}">Features</a>
                         </li>
                         <li>
                             <a href="{% url 'login' %}">login</a>
                         </li>
                         <li>
-                            <a href="{% url 'register' %}">Sign</a>
+                            <a href="{% url 'register' %}">Sign Up</a>
                         </li>
 
                         
