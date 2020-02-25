@@ -8,7 +8,7 @@ class VendorView(View):  # Vendor Registration
         # form = forms.VendorForm(request.POST or None)
         # context = {'form': form, 'form_id': 'user_register', 'title': 'Vendor Registration'}
         context = {'title': 'Vendor'}
-        return render(request, 'index.html', context)
+        return render(request, 'base.html', context)
 
     def post(self, request):
         # print(request.POST)
