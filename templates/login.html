@@ -233,7 +233,7 @@
         <div class= "loginbox">
         <img src="{% static 'images/media/Tryon Icon.png' %}" class="gjgk">
             <h1>Login Here</h1>
-            <form action="login" method="POST">
+            <form action="{% url 'login' %}" method="POST">
                 {% csrf_token %} 
     
              

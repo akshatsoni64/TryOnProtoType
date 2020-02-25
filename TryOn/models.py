@@ -73,7 +73,7 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     type = models.CharField(max_length=10) # top or bottom
     material = models.CharField(max_length=20)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
+    price = models.DecimalField(decimal_places=2, max_digits=6)
 
 
 class ProductReview(models.Model):
