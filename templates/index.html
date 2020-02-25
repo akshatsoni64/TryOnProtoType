@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'images/Media/TryonIcon.png' %}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 <!--===============================================================================================-->
@@ -49,7 +49,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO">
+						<img src="{% static 'images/Media/TryonLogo.png' %}" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -563,7 +563,7 @@
 											
 											<form method="POST" action="{%url 'product-details'%}">
 												{% csrf_token %}
-												
+
 											<button type="submit" formmethod="POST"  name="name" value="{{item.pid.id}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 												{{item.pid.category}}
 											</button>

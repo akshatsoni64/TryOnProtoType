@@ -1,5 +1,7 @@
 from django import forms
-from . import models
+from TryOn.models import *
+from TryOnShipper.models import *
+from TryOnVendor.models import *
 
 usersChoice = (
     ("customer", "Customer"),
@@ -39,7 +41,7 @@ stateChoice = (
 
 
 class LoginForm(forms.Form):
-    utype = forms.CharField(widget=forms.RadioSelect(choices=usersChoice), label="Type")
+    # utype = forms.CharField(widget=forms.RadioSelect(choices=usersChoice), label="Type")
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -180,7 +182,7 @@ class VendorForm(forms.ModelForm):
 
 
     class Meta:
-        model = models.Vendor
+        model = Vendor
         fields = '__all__'
 
     """def __init__(self, *args, **kwargs):
@@ -309,7 +311,7 @@ class ShipperForm(forms.ModelForm):
         }
     ))
     class Meta:
-        model = models.Shipper
+        model = Shipper
         fields = '__all__'
 
 
@@ -394,7 +396,7 @@ class CustomerForm(forms.ModelForm):
     ))
 
     class Meta:
-        model = models.Customer
+        model = Customer
         fields = '__all__'
 
 class ProductUploadForm(forms.ModelForm):
@@ -442,6 +444,6 @@ class ProductUploadForm(forms.ModelForm):
         }
     ))
     class Meta:
-        model = models.Product
+        model = Product
         fields = '__all__'
 
