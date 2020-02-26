@@ -5,9 +5,32 @@ from TryOn import form as forms
 from TryOn.models import *
 from TryOnVendor.models import *
 from TryOnShipper.models import *
+from TryOn.form import *
+from TryOnVendor.form import *
+from TryOnShipper.form import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+
+
+class RegisterView(View):
+    def get(self, request):
+        form = CustomerRegisterForm(request.POST)
+        context = {'form': form}
+        return render(request, 'register.html', context)
+
+    def post(self, request):
+        form = CustomerRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            template = 'index.html'
+        else:
+            print("Error Form", form.errors)
+            template = 'register.html'
+
+        # context = {'form': form, 'form_id': 'customer_register', 'title': 'Customer Registration'}
+        context = {'form': form, 'error': form.errors}
+        return render(request, template, context)
 
 
 @csrf_exempt
@@ -43,37 +66,7 @@ def product_details(request):
     return render(request, 'product-detail.html')
 
 
-def register(request):
-    if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        email = request.POST['email']
-
-        if password1 == password2:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username taken')
-                return redirect('register')
-            elif User.objects.filter(email=email).exists():
-                messages.info(request, 'email taken')
-                return redirect('register')
-            else:
-                user = User.objects.create_user(username=username, password=password1, email=email,
-                                                first_name=first_name, last_name=last_name)
-                user.save();
-                print('user created')
-                return redirect('login')
-
-        else:
-            print('password not matching.....')
-            return redirect('register')
-    else:
-        return render(request, 'register.html')
-
-
-def login(request):
+"""def login(request):
     if request.method == 'POST':
         print(request.POST)
         username = request.POST['username']
@@ -90,7 +83,7 @@ def login(request):
             messages.info(request, 'invalid credentials')
             return redirect('login')
     else:
-        return render(request, 'login.html')
+        return render(request, 'login.html')"""
 
 
 def logout(request):
@@ -99,14 +92,8 @@ def logout(request):
 
 
 class LoginView(View):
-    def auth(self, uid, pwd, modelName):
-        if modelName == 'customer':
-            modl = models.Customer
-        elif modelName == 'vendor':
-            modl = models.Vendor
-        elif modelName == 'shipper':
-            modl = models.Shipper
-        cred = modl.objects.get(username=uid)
+    def auth(self, uid, pwd):
+        cred = Customer.objects.get(username=uid)
         print("Credentials: ", cred.username, cred.password, pwd)
         if cred:
             return True if cred.password == pwd else False
@@ -114,23 +101,24 @@ class LoginView(View):
             return False
 
     def get(self, request):
-        form = forms.LoginForm(request.POST or None)
+        form = LoginForm(request.POST or None)
         context = {'form': form, 'form_id': 'login', 'title': 'Login'}
-        return render(request, 'index.html', context)
+        return render(request, 'login.html', context)
 
     def post(self, request):
         print(request.POST)
-        form = forms.LoginForm(request.POST)
-        status = self.auth(uid=request.POST['username'], pwd=request.POST['password'], modelName=request.POST['utype'])
+        form = LoginForm(request.POST)
+        status = self.auth(uid=request.POST['username'], pwd=request.POST['password'])
         print("Status: ", status)
+        cust_name = Customer.objects.get(username=request.POST['username'])
+        context = {'form': form, 'cust_name': cust_name.f_name}
         if status:
             request.session['username'] = request.POST['username']
             request.session['password'] = request.POST['password']
             print(request.session)
-            return HttpResponse("/vendor/addproducts/") if request.POST['utype'] == "vendor" else HttpResponse(
-                "/login/")
+            return render(request, 'index.html', context)
         else:
-            return HttpResponse("/login/")
+            return render(request, 'login.html', context)
 
     def put(self, request):
         pass
@@ -141,19 +129,10 @@ class LoginView(View):
 
 class CustomerView(View):
     def get(self, request):
-        form = forms.CustomerForm(request.POST or None)
-        context = {'form': form, 'form_id': 'customer_register', 'title': 'Customer Registration'}
-        return render(request, 'index.html', context)
+        pass
 
     def post(self, request):
-        form = forms.CustomerForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else:
-            print("Error Form")
-
-        context = {'form': form, 'form_id': 'customer_register', 'title': 'Customer Registration'}
-        return render(request, 'index.html', context)
+        pass
 
     def put(self, request):
         pass

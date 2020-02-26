@@ -1,0 +1,24 @@
+- Install MySQL Server first of all
+- make following prequisite configurations:(For LAMPP)
+
+sudo mkdir /var/run/mysqld
+
+sudo ln -s /opt/lampp/var/mysql/mysql.sock /var/run/mysqld/mysqld.sock
+----------------------------------------------------------------------------
+- make sure you have installed python with this lib: 'libmysqlclient-dev'
+sudo apt-get install <python-command> libmysqlclient-dev
+
+Use following database configuration in settings.py:(
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dbname_here',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 3306,
+    }
+}
+----------------------------------------------------------------------------
+Make sure to migrate after configurations are done

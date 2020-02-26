@@ -62,264 +62,12 @@ class LoginForm(forms.Form):
     )
 
 
-class VendorForm(forms.ModelForm):
-    name = forms.CharField(label="Company Name", widget=forms.TextInput(
-        attrs={
-            'id': "cnameVendor",
-            'maxlength': '30',
-            'placeholder': 'Company Name'
-        }
-    ))
-    owner_fname = forms.CharField(label="First Name", widget=forms.TextInput(
-        attrs={
-            'id': "fnameVendor",
-            'maxlength': '30',
-            'placeholder': 'First Name'
-        }
-    ))
-    owner_lname = forms.CharField(label="Last Name", widget=forms.TextInput(
-        attrs={
-            'id': "lnameVendor",
-            'maxlength': '30',
-            'placeholder': 'Last Name'
-        }
-    ))
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "usernameVendor",
-            'maxlength': '30',
-            'placeholder': 'Username'
-        }
-    ))
-    password = forms.CharField(widget=forms.PasswordInput(
-        attrs={
-            'id': "passwordVendor",
-            'maxlength': '30',
-            'placeholder': 'Password'
-        }
-    ))
-    mobile = forms.IntegerField(widget=forms.NumberInput(
-        attrs={
-            'id': "mobVendor",
-            'max': '9999999999',
-            'placeholder': 'Mobile Number'
-        }
-    ))
-    email = forms.EmailField(widget=forms.TextInput(
-        attrs={
-            'id': "emailVendor",
-            'maxlength': '50',
-            'placeholder': 'Email Address'
-        }
-    ))
-    business_address = forms.CharField(label="Address", widget=forms.TextInput(
-        attrs={
-            'id': "bAddVendor",
-            'maxlength': '100',
-            'placeholder': 'Business Address'
-        }
-    ))
-    city = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "cityVendor",
-            'maxlength': '30',
-            'placeholder': 'City'
-        }
-    ))
-    pincode = forms.IntegerField(widget=forms.NumberInput(
-        attrs={
-            'id': "pincodeVendor",
-            'max': '999999',
-            'placeholder': 'Pincode'
-        }
-    ))
-    state = forms.ChoiceField(label="State", choices=stateChoice)
-    zone = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "zoneVendor",
-            'maxlength': '30',
-            'placeholder': 'Zone'
-        }
-    ))
-    gst_no = forms.CharField(label="GST Number", widget=forms.TextInput(
-        attrs={
-            'id': "gstVendor",
-            'maxlength': '15',
-            'placeholder': 'GST Number'
-        }
-    ))
-    aadhar_no = forms.IntegerField(label="Aadhar Number", widget=forms.NumberInput(
-        attrs={
-            'id': "aadharVendor",
-            'max': '999999999999',
-            'placeholder': 'Aadhar Number'
-        }
-    ))
-    tradelicense_id = forms.IntegerField(label="Trade License Number", widget=forms.NumberInput(
-        attrs={
-            'id': "tradelicenseVendor",
-            'max': '99999999999999',
-            'placeholder': 'Trade License ID'
-        }
-    ))
-    permit_document = forms.FileField(label="Documents for Permission", widget=forms.ClearableFileInput(
-        attrs={
-            'id': 'v_doc',
-            'class': 'DocUpload'
-        }
-    ))
-    address_proof = forms.FileField(label="Address Proof", widget=forms.ClearableFileInput(
-        attrs={
-            'id': 'v_add',
-            'class': 'DocUpload'
-        }
-    ))
-    request_status = forms.CharField(widget=forms.HiddenInput(
-        attrs={
-            'value': 'False'
-        }
-    ))
-
-
-    class Meta:
-        model = Vendor
-        fields = '__all__'
-
-    """def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
-        # if you want to do it to all of them
-        for field in self.fields.values():
-            field.error_messages = {'required': ''.format(
-                fieldname=field.label)}"""
-
-
-class ShipperForm(forms.ModelForm):
-    sname = forms.CharField(label="Company Name", widget=forms.TextInput(
-        attrs={
-            'id': "snameShipper",
-            'maxlength': '30',
-            'placeholder': 'Name Here...'
-        }
-    ))
-    owner_fname = forms.CharField(label="First Name", widget=forms.TextInput(
-        attrs={
-            'id': "fnameShipper",
-            'maxlength': '30',
-            'placeholder': 'First Name'
-        }
-    ))
-    owner_lname = forms.CharField(label="Last Name", widget=forms.TextInput(
-        attrs={
-            'id': "lnameShipper",
-            'maxlength': '30',
-            'placeholder': 'Last Name'
-        }
-    ))
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "usernameShipper",
-            'maxlength': '30',
-            'placeholder': 'Username'
-        }
-    ))
-    password = forms.CharField(widget=forms.PasswordInput(
-        attrs={
-            'id': "passwordShipper",
-            'maxlength': '30',
-            'placeholder': 'Password'
-        }
-    ))
-    mobile = forms.IntegerField(widget=forms.NumberInput(
-        attrs={
-            'id': "mobShipper",
-            'max': '9999999999',
-            'placeholder': 'Mobile Number'
-        }
-    ))
-    email = forms.EmailField(widget=forms.TextInput(
-        attrs={
-            'id': "emailShipper",
-            'maxlength': '50',
-            'placeholder': 'Email Address'
-        }
-    ))
-    business_address = forms.CharField(label="Address", widget=forms.TextInput(
-        attrs={
-            'id': "bAddShipper",
-            'maxlength': '100',
-            'placeholder': 'Business Address'
-        }
-    ))
-    city = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "cityShipper",
-            'maxlength': '30',
-            'placeholder': 'City'
-        }
-    ))
-    pincode = forms.IntegerField(widget=forms.NumberInput(
-        attrs={
-            'id': "pincodeShipper",
-            'max': '999999',
-            'placeholder': 'Pincode'
-        }
-    ))
-    state = forms.ChoiceField(label="State", choices=stateChoice)
-    zone = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'id': "zoneShipper",
-            'maxlength': '30',
-            'placeholder': 'Zone'
-        }
-    ))
-    gst_no = forms.CharField(label="GST Number", widget=forms.TextInput(
-        attrs={
-            'id': "gstShipper",
-            'maxlength': '15',
-            'placeholder': 'GST Number'
-        }
-    ))
-    aadhar_no = forms.IntegerField(label="Aadhar Number", widget=forms.NumberInput(
-        attrs={
-            'id': "aadharShipper",
-            'max': '999999999999',
-            'placeholder': 'Aadhar Number'
-        }
-    ))
-    tradelicense_id = forms.IntegerField(label="Trade License Number", widget=forms.NumberInput(
-        attrs={
-            'id': "tradelicenseShipper",
-            'max': '99999999999999',
-            'placeholder': 'Trade License ID'
-        }
-    ))
-    permit_document = forms.FileField(label="Documents for Permission", widget=forms.ClearableFileInput(
-        attrs={
-            'id': 's_doc',
-            'class': 'DocUpload'
-        }
-    ))
-    address_proof = forms.FileField(label="Address Proof", widget=forms.ClearableFileInput(
-        attrs={
-            'id': 's_add',
-            'class': 'DocUpload'
-        }
-    ))
-    request_status = forms.CharField(widget=forms.HiddenInput(
-        attrs={
-            'value': 'False'
-        }
-    ))
-    class Meta:
-        model = Shipper
-        fields = '__all__'
-
-
-class CustomerForm(forms.ModelForm):
+class CustomerRegisterForm(forms.ModelForm):
     f_name = forms.CharField(label="First Name", widget=forms.TextInput(
         attrs={
             'id': "firstname",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'First Name'
         }
     ))
@@ -327,6 +75,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "middlename",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'Middle Name'
         }
     ))
@@ -334,6 +83,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "lastname",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'Last Name'
         }
     ))
@@ -341,6 +91,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "username",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'Username'
         }
     ))
@@ -348,6 +99,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "password",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'Password'
         }
     ))
@@ -355,6 +107,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "mobileno",
             'max': '9999999999',
+            'class':'form-input',
             'placeholder': 'Mobile Number'
         }
     ))
@@ -362,6 +115,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "email",
             'maxlength': '50',
+            'class': 'form-input',
             'placeholder': 'email@address.com'
         }
     ))
@@ -369,6 +123,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "referral",
             'maxlength': '20',
+            'class': 'form-input',
             'placeholder': 'Referral Code'
         }
     ))
@@ -376,14 +131,21 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "address",
             'maxlength': '100',
+            'class': 'form-input',
             'placeholder': 'Address'
         }
     ))
-    state = forms.ChoiceField(label="State", choices=stateChoice)
+    state = forms.ChoiceField(label="State", choices=stateChoice, widget=forms.Select(
+        attrs={
+            'id': "state",
+            'class': 'form-input'
+        }
+    ))
     city = forms.CharField(label="City", widget=forms.TextInput(
         attrs={
             'id': "city",
             'maxlength': '30',
+            'class':'form-input',
             'placeholder': 'City'
         }
     ))
@@ -391,6 +153,7 @@ class CustomerForm(forms.ModelForm):
         attrs={
             'id': "pincode",
             'maxlength': '30',
+            'class': 'form-input',
             'placeholder': 'Pincode'
         }
     ))
@@ -398,52 +161,3 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
-
-class ProductUploadForm(forms.ModelForm):
-    vendor_id = forms.CharField(widget=forms.HiddenInput())
-    brand = forms.CharField(label="Brand", widget=forms.TextInput(
-        attrs={
-            'maxlength': '30',
-            'placeholder': 'Brand'
-        }
-    ))
-    category = forms.CharField(label="Product Category", widget=forms.TextInput(
-        attrs={
-            'maxlength': '20',
-            'placeholder': 'Category'
-        }
-    ))
-    sub_category = forms.CharField(label="Product Category", widget=forms.TextInput(
-        attrs={
-            'maxlength': '20',
-            'placeholder': 'Sub-Category'
-        }
-    ))
-    description = forms.CharField(label="Product Description", widget=forms.TextInput(
-        attrs={
-            'maxlength': '200',
-            'placeholder': 'Description'
-        }
-    ))
-    type = forms.CharField(label="Product Type", widget=forms.TextInput(
-        attrs={
-            'maxlength': '10',
-            'placeholder': 'Type'
-        }
-    ))
-    material = forms.CharField(label="Product Material", widget=forms.TextInput(
-        attrs={
-            'maxlength': '20',
-            'placeholder': 'Material'
-        }
-    ))
-    price = forms.IntegerField(label="Product Price", widget=forms.NumberInput(
-        attrs={
-            'max': '999999',
-            'placeholder': 'Price'
-        }
-    ))
-    class Meta:
-        model = Product
-        fields = '__all__'
-

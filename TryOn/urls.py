@@ -9,8 +9,8 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"),
     path('productdetails/',views.product_details,name="product-details"),
     path('logout/', views.logout,name="logout"),
-    path('register/', views.register,name="register"),
-    path('login/', views.login,name="login"),
-    # path('customer/', views.CustomerView.as_view(), name="login_customer"),  # Customer Registration Form (get)
-    # path('customer/add/', views.CustomerView.as_view(), name="authenticate_customer"),  # Customer Registration Process(post)
+    # path('register/', views.register,name="register"),
+    path('login/', views.LoginView.as_view(),name="login"),
+    path('register/', views.RegisterView.as_view(), name="register_customer"),  # Customer Registration Form (get)
+    path('register/auth/', views.RegisterView.as_view(), name="authenticate_customer"),  # Customer Registration Process(post)
 ]
